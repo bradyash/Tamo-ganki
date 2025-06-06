@@ -1,0 +1,13 @@
+
+{
+  "package": "ankipet",
+  "name": "AnkiPet - Wandering Sprite",
+  "mod": 5,
+  "author": "Brady Ash",
+  "description": "AnkiPet that wanders around and animates with idle/walk/attack.",
+  "version": "2.2.0",
+  "configSchema": {},
+  "min_point_version": 35,
+  "max_point_version": 60,
+  "preview": false
+}
