@@ -76,7 +76,9 @@ class PetWidget(QWidget):
             transform = QTransform().scale(-1, 1)
             cropped = cropped.transformed(transform)
 
-        self.image.setPixmap(cropped.scaled(100, 100, Qt.AspectRatioMode.KeepAspectRatio))
+        self.image.setPixmap(
+            cropped.scaled(100, 100, Qt.AspectRatioMode.KeepAspectRatio)
+        )
         self.image.repaint()
         self.frame_index = (self.frame_index + 1) % frames
 

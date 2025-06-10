@@ -10,17 +10,20 @@ from PyQt6.QtCore import Qt
 import os
 
 pet = AnkiPet()
+pet_widget = None
 
 def on_card_review(reviewer, card, ease):
     today = datetime.now().date()
     if ease > 1:
         pet.feed()
         pet.play()
-        pet_widget.load_animation("attack", temporary=True)
+        if pet_widget:
+            pet_widget.load_animation("attack", temporary=True)
     else:
         pet.neglect()
     pet.check_streak(today)
-    pet_widget.update_status()
+    if pet_widget:
+        pet_widget.update_status()
 
 def show_pet():
     global pet_widget
