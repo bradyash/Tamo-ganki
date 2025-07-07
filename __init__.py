@@ -28,7 +28,6 @@ def on_card_review(reviewer, card, ease):
 def show_pet():
     global pet_widget
     today = datetime.now().date()
-    pet.last_active_day = pet.load_last_active_day()
     pet.check_streak(today)
     pet_widget = PetWidget(pet, os.path.dirname(__file__))
     dock = QDockWidget("AnkiPet", parent=mw)
