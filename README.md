@@ -55,7 +55,9 @@ Compatible with Anki versions **2.1.35–2.1.60**.
 ## Credits
 
 Created by **Brady Ash**  
-If you enjoy Tamo-ganki, consider supporting the author on [Ko-fi](https://ko-fi.com/S6S61KBCPT).
+If you enjoy Tamo-ganki, consider supporting the author:
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/S6S61KBCPT).
 
 Happy studying—and take good care of your AnkiPet!
 
