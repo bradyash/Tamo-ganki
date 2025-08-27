@@ -4,8 +4,11 @@ from aqt import mw
 
 class AnkiPet:
     def __init__(self):
-        # Load persisted stats if available
-        saved = mw.pm.profile.get("ankipet_stats", {})
+        # Load persisted stats if available. ``mw.pm.profile`` is not available
+        # until a profile has been opened, so guard against ``None`` to avoid
+        # crashes when the add-on is imported before that happens.
+        profile = getattr(mw.pm, "profile", None) if getattr(mw, "pm", None) else None
+        saved = profile.get("ankipet_stats", {}) if profile else {}
         self.happiness = saved.get("happiness", 100)
         self.hunger = saved.get("hunger", 0)
         self.health = saved.get("health", 100)
@@ -15,7 +18,8 @@ class AnkiPet:
         self.last_active_day = self.load_last_active_day()
 
     def load_last_active_day(self):
-        saved = mw.pm.profile.get("ankipet_last_active")
+        profile = getattr(mw.pm, "profile", None) if getattr(mw, "pm", None) else None
+        saved = profile.get("ankipet_last_active") if profile else None
         if saved:
             try:
                 return datetime.strptime(saved, "%Y-%m-%d").date()
@@ -24,18 +28,22 @@ class AnkiPet:
         return None
 
     def save_last_active_day(self, day):
-        mw.pm.profile["ankipet_last_active"] = day.strftime("%Y-%m-%d")
-        mw.pm.save()
+        profile = getattr(mw.pm, "profile", None) if getattr(mw, "pm", None) else None
+        if profile:
+            profile["ankipet_last_active"] = day.strftime("%Y-%m-%d")
+            mw.pm.save()
 
     def save_stats(self):
-        mw.pm.profile["ankipet_stats"] = {
-            "happiness": self.happiness,
-            "hunger": self.hunger,
-            "health": self.health,
-            "level": self.level,
-            "streak": self.streak,
-        }
-        mw.pm.save()
+        profile = getattr(mw.pm, "profile", None) if getattr(mw, "pm", None) else None
+        if profile:
+            profile["ankipet_stats"] = {
+                "happiness": self.happiness,
+                "hunger": self.hunger,
+                "health": self.health,
+                "level": self.level,
+                "streak": self.streak,
+            }
+            mw.pm.save()
 
     def feed(self):
         self.hunger = max(0, self.hunger - 10)
