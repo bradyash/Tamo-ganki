@@ -11,13 +11,14 @@ class PetWidget(QWidget):
         self.base_dir = base_dir
         self.frame_index = 0
         self.animation_timer = QTimer(self)
-        self.setFixedSize(300, 200)
+        self.setFixedSize(320, 270)
 
         self.image = QLabel(self)
-        self.image.setGeometry(100, 60, 100, 100)
+        self.image.setGeometry(110, 60, 100, 100)
 
         self.status = QLabel(self)
-        self.status.setGeometry(10, 150, 280, 80)
+
+        self.status.setGeometry(10, 180, 300, 90)
         self.status.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.animations = {
@@ -31,7 +32,7 @@ class PetWidget(QWidget):
         self.load_animation(self.current_animation)
         self.update_status()
 
-        self.position_x = 100
+        self.position_x = 110
         self.moving_right = True
         self.facing_right = True
 
@@ -86,7 +87,7 @@ class PetWidget(QWidget):
         if self.current_animation == "walk":
             if self.moving_right:
                 self.position_x += 4
-                if self.position_x > 200:
+                if self.position_x > self.width() - 100:
                     self.moving_right = False
             else:
                 self.position_x -= 4
