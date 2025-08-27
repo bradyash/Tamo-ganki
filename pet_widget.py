@@ -17,6 +17,7 @@ class PetWidget(QWidget):
         self.image.setGeometry(110, 60, 100, 100)
 
         self.status = QLabel(self)
+
         self.status.setGeometry(10, 180, 300, 90)
         self.status.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
